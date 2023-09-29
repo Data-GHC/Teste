@@ -2,6 +2,7 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
+import numpy_financial as npf
 
 # Função para calcular o fluxo de caixa
 def calcular_fluxo_de_caixa(receitas, percentual_custo, percentual_impostos, investimentos, depreciação, impostos_sobre_venda, crescimento_faturamento, pagamentos_rj):
@@ -57,7 +58,7 @@ def main():
         quantidade_parcelas = st.sidebar.number_input(f'Quantidade de Parcelas Classe {classe}', value=12)
         taxa_juros_anual = st.sidebar.slider(f'Taxa de Juros Anual Classe {classe} (%)', min_value=0, max_value=20, step=1, value=5) / 100
 
-        valor_parcela = np.pmt(taxa_juros_anual / 12, quantidade_parcelas, -total_credito * (1 - desagio_proposto))
+        valor_parcela = npf.pmt(taxa_juros_anual / 12, quantidade_parcelas, -total_credito * (1 - desagio_proposto))
         pagamentos_rj += [valor_parcela] * int(quantidade_parcelas)
 
     # Criar o DataFrame base
