@@ -28,9 +28,9 @@ def calcular_fluxo_de_caixa(receitas, percentual_custo, percentual_impostos, inv
         if i < len(pagamentos_rj):
             fluxo_de_caixa_total -= pagamentos_rj[i]
     
-    fluxo_de_caixa.append(fluxo_de_caixa_total)
-
-    return fluxo_de_caixa
+        fluxo_de_caixa.append(fluxo_de_caixa_total)
+    
+        return fluxo_de_caixa
 
 # Interface do Streamlit
 def main():
