@@ -63,7 +63,7 @@ def main():
     
         # Monthly payment calculation
         if taxa_mensal > 0:
-            valor_parcela = pv * (taxa_mensal * (1 + taxa_mensal)**quantidade_parcelas) / ((1 + taxa_mensal)**quantidade_parcelas - 1)
+            valor_parcela = npf.pmt(rate=taxa_mensal, nper=quantidade_parcelas, pv=pv).item()  # Convertendo para um tipo de dado simples
         else:
             valor_parcela = -pv / quantidade_parcelas
     
