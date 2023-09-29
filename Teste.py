@@ -58,7 +58,8 @@ def main():
         quantidade_parcelas = st.sidebar.number_input(f'Quantidade de Parcelas Classe {classe}', value=12)
         taxa_juros_anual = st.sidebar.slider(f'Taxa de Juros Anual Classe {classe} (%)', min_value=0, max_value=20, step=1, value=5) / 100
 
-        valor_parcela = npf.pmt(taxa_juros_anual / 12, quantidade_parcelas, -total_credito * (1 - desagio_proposto))
+        taxa_mensal = taxa_juros_anual / 12
+        valor_parcela = npf.pmt(rate=taxa_mensal, nper=quantidade_parcelas, pv=-total_credito * (1 - desagio_proposto))
         pagamentos_rj += [valor_parcela] * int(quantidade_parcelas)
 
     # Criar o DataFrame base
