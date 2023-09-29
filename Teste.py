@@ -57,9 +57,16 @@ def main():
         desagio_proposto = st.sidebar.slider(f'Deságio Proposto Classe {classe} (%)', min_value=0, max_value=50, step=1, value=20) / 100
         quantidade_parcelas = st.sidebar.number_input(f'Quantidade de Parcelas Classe {classe}', value=12)
         taxa_juros_anual = st.sidebar.slider(f'Taxa de Juros Anual Classe {classe} (%)', min_value=0, max_value=20, step=1, value=5) / 100
-
+    
         taxa_mensal = taxa_juros_anual / 12
-        valor_parcela = npf.pmt(rate=taxa_mensal, nper=quantidade_parcelas, pv=-total_credito * (1 - desagio_proposto))
+        pv = -total_credito * (1 - desagio_proposto)
+    
+        # Monthly payment calculation
+        if taxa_mensal > 0:
+            valor_parcela = pv * (taxa_mensal * (1 + taxa_mensal)**quantidade_parcelas) / ((1 + taxa_mensal)**quantidade_parcelas - 1)
+        else:
+            valor_parcela = -pv / quantidade_parcelas
+    
         pagamentos_rj += [valor_parcela] * int(quantidade_parcelas)
 
     # Criar o DataFrame base
