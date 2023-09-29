@@ -21,8 +21,7 @@ def calcular_fluxo_de_caixa(receitas, custos, despesas, investimentos, deprecia√
         fluxo_de_caixa_operacional = resultado_liquido + deprec
         fluxo_de_caixa_total = fluxo_de_caixa_operacional - investimento
 
-        receitas[i + 1:] *= (1 + crescimento_faturamento)
-
+        receitas[i + 1:] = receitas[i + 1:].astype('float64') * (1 + crescimento_faturamento)
         fluxo_de_caixa.append(fluxo_de_caixa_total)
 
     return fluxo_de_caixa
