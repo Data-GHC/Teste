@@ -1,7 +1,7 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
 
 # Função para calcular o fluxo de caixa
 def calcular_fluxo_de_caixa(receitas, custos, despesas, investimentos, depreciação, impostos, crescimento_faturamento):
