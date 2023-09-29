@@ -25,9 +25,9 @@ def calcular_fluxo_de_caixa(receitas, percentual_custo, percentual_impostos, inv
         receitas[i + 1:] = receitas[i + 1:].astype('float64') * (1 + crescimento_faturamento/100)
         
         # Subtrai pagamentos da RJ
-    if i < len(pagamentos_rj):
-        fluxo_de_caixa_total -= pagamentos_rj[i]
-
+        if i < len(pagamentos_rj):
+            fluxo_de_caixa_total -= pagamentos_rj[i]
+    
     fluxo_de_caixa.append(fluxo_de_caixa_total)
 
     return fluxo_de_caixa
