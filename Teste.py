@@ -22,7 +22,7 @@ def calcular_fluxo_de_caixa(receitas, percentual_custo, percentual_impostos, inv
         fluxo_de_caixa_operacional = resultado_liquido + deprec
         fluxo_de_caixa_total = fluxo_de_caixa_operacional - investimento
 
-        receitas[i + 1:] = receitas[i + 1:].astype('float64') * (1 + crescimento_faturamento)
+        receitas[i + 1:] = receitas[i + 1:].astype('float64') * (1 + crescimento_faturamento/100)
         
         # Subtrai pagamentos da RJ
         if i < len(pagamentos_rj):
